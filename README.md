@@ -15,6 +15,10 @@ cd medieval-tcg-eth
 npm install
 ```
 
+## Deploiement du contrat
+
+Pour deployer le contrat, nous recommandons l'utilisation de Remix IDE (https://remix.ethereum.org) qui permet de compiler et deployer facilement sur Sepolia via MetaMask.
+
 ## Utilisation avec Hardhat
 
 Compiler les contrats :
@@ -43,8 +47,12 @@ Le frontend se trouve dans le dossier `frontend/`. Pour l'utiliser :
 
 1. Deployer le contrat (via Remix ou Hardhat)
 2. Copier l'adresse du contrat deploye dans `frontend/app.js` (variable `CONTRACT_ADDRESS`)
-3. Ouvrir `frontend/index.html` dans un navigateur
-4. Connecter MetaMask
+3. Lancer le serveur local :
+```bash
+npx serve frontend
+```
+4. Ouvrir l'URL affichee dans un navigateur
+5. Connecter MetaMask
 
 ### Fonctionnalites du frontend
 
