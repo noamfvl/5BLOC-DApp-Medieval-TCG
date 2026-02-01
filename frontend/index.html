@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medieval TCG - DApp</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Medieval TCG</h1>
+        <div id="wallet-section">
+            <button id="connect-btn" class="btn btn-primary">Connecter MetaMask</button>
+            <div id="wallet-info" class="hidden">
+                <span id="wallet-address"></span>
+                <span id="user-status"></span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Section Enregistrement -->
+        <section id="register-section" class="card hidden">
+            <h2>Inscription</h2>
+            <div class="form-group">
+                <input type="text" id="username" placeholder="Votre pseudo (max 20 car.)" maxlength="20">
+                <button id="register-btn" class="btn">S'inscrire</button>
+            </div>
+        </section>
+
+        <!-- Section Utilisateur -->
+        <section id="user-section" class="card hidden">
+            <h2>Mon Profil</h2>
+            <div id="user-info">
+                <p><strong>Pseudo:</strong> <span id="display-username"></span></p>
+                <p><strong>Echanges completes:</strong> <span id="trades-count">0</span></p>
+                <p><strong>Statut:</strong> <span id="transaction-status"></span></p>
+            </div>
+        </section>
+
+        <!-- Section Mes Cartes -->
+        <section id="cards-section" class="card hidden">
+            <h2>Mes Cartes (<span id="cards-count">0</span>/4)</h2>
+            <div id="cards-grid" class="cards-grid"></div>
+        </section>
+
+        <!-- Section Admin (Mint) -->
+        <section id="admin-section" class="card hidden">
+            <h2>Admin - Minter une Carte</h2>
+            <div class="form-group">
+                <input type="text" id="mint-to" placeholder="Adresse destinataire">
+                <input type="text" id="mint-name" placeholder="Nom de la carte" maxlength="32">
+                <select id="mint-type">
+                    <option value="0">Knight (Chevalier)</option>
+                    <option value="1">Mage</option>
+                    <option value="2">Archer</option>
+                    <option value="3">Castle (Chateau)</option>
+                    <option value="4">Dragon (Epic only)</option>
+                    <option value="5">Spell (Sort)</option>
+                </select>
+                <select id="mint-rarity">
+                    <option value="0">Common (100 pts)</option>
+                    <option value="1">Uncommon (250 pts)</option>
+                    <option value="2">Rare (500 pts)</option>
+                    <option value="3">Epic (1000 pts)</option>
+                </select>
+                <input type="text" id="mint-ipfs" placeholder="IPFS Hash (ipfs://...)">
+                <button id="mint-btn" class="btn btn-success">Minter</button>
+            </div>
+        </section>
+
+        <!-- Section Echanges -->
+        <section id="trade-section" class="card hidden">
+            <h2>Proposer un Echange</h2>
+            <div class="form-group">
+                <input type="text" id="trade-to" placeholder="Adresse du destinataire">
+                <input type="text" id="trade-my-cards" placeholder="Mes cartes (ex: 1,2)">
+                <input type="text" id="trade-their-cards" placeholder="Leurs cartes (ex: 3)">
+                <button id="propose-trade-btn" class="btn btn-primary">Proposer</button>
+            </div>
+        </section>
+
+        <!-- Section Echanges en Attente -->
+        <section id="pending-trades-section" class="card hidden">
+            <h2>Echanges en Attente</h2>
+            <div id="pending-trades-list"></div>
+        </section>
+
+        <!-- Notifications -->
+        <div id="notification" class="notification hidden"></div>
+
+        <!-- Modal pour afficher la carte en grand -->
+        <div id="card-modal" class="modal hidden">
+            <div class="modal-content">
+                <span class="modal-close" onclick="closeModal()">&times;</span>
+                <div class="modal-card">
+                    <img id="modal-image" src="" alt="Card Image">
+                    <div class="modal-info">
+                        <h2 id="modal-name"></h2>
+                        <p id="modal-type"></p>
+                        <div class="modal-stats">
+                            <div class="modal-stat">
+                                <span class="stat-value" style="color: #e74c3c;" id="modal-attack"></span>
+                                <span class="stat-label">ATK</span>
+                            </div>
+                            <div class="modal-stat">
+                                <span class="stat-value" style="color: #3498db;" id="modal-defense"></span>
+                                <span class="stat-label">DEF</span>
+                            </div>
+                        </div>
+                        <p id="modal-rarity"></p>
+                        <p id="modal-value"></p>
+                        <p id="modal-ipfs" class="modal-ipfs"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Medieval TCG - Projet 5BLOC SUPINFO</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/ethers@6.9.0/dist/ethers.umd.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
